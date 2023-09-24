@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <title>Dictionary App Api</title>
+    </head>
+    <style>
+        .body{
+            background-color: #b394d6;
+            text-align: center;
+            border-style: solid;
+            border-radius: 30px;
+            height: 80%;
+            width: 80%;
+            margin-left: 10%;
+            margin-top: 20px;
+            box-shadow: -5px 5px 15px;
+
+        }
+
+
+        
+        .bg{
+            background-color: #e3d2f7;
+            border-radius: 30px;
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+
+        }
+        h1{
+            color: blue;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .box{
+            box-sizing: border-box;
+            border-radius: 10px;
+            height: 30px;
+            font-size: 17px;
+            border: none;
+            
+        }
+        .button{
+            border-radius: 10px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+            width: 80px;
+            font-size: 17px;
+            background-color: #b394d6;
+        }
+        .logo{
+            margin-top: 50px;
+            height: 80px;
+        }
+        
+    </style>
+    
+    <body class="body">
+        <form>
+            <div class="bg">
+        <img src="dictionary.png" class="logo">
+        <h2>Welcome to Dictionary App</h2>
+        <!-- <h1 >welcome to dictionary app</h1>-->
+        <form class="h1" role="search">
+            <input id="searchinput" class="box" type="search" placeholder="Search any word" aria-label="Search">
+            <button class="button" type="submit" id="searchbtn">Search</button>
+            
+
+
+            <p>you searched for <span id="wordname"></span> : <span id="words"></span></p>
+
+            <h1 class="display-5 fw-bold"><span id="wordheading"></span></h1>
+            <p class="lead mb-4"><span id="definition">The Meaning will appear here!!</span> </p>
+        </div>
+        </form>
+
+        <script>
+            const dictionary = (word) => {
+
+
+
+
+
+
+                
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        'X-RapidAPI-Key': '7a1ed96ab7msh296cd501c4332bcp10ac8ajsn889bfea802b3',
+                        'X-RapidAPI-Host': 'dictionary-by-api-ninjas.p.rapidapi.com'
+                            }
+                    };
+                    fetch('https://dictionary-by-api-ninjas.p.rapidapi.com/v1/dictionary?word=' +word, options)
+                    .then((Response) => Response.json())
+                    .then((response) => {
+
+                        wordheading.innerHTML = response.word;
+                        definition.innerHTML = response.definition;
+                    })
+                    .catch(err=> console.error(err));
+                }
+
+
+
+
+
+
+                searchbtn.addEventListener("click", (e)=>{
+                    e.preventDefault();
+                    dictionary(searchinput.value)
+                })
+                
+            
+            
+                
+        </script>
+    </body>
+</html>
